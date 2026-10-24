@@ -1,0 +1,19 @@
+<header class="site-header">
+  <nav class="container">
+    <a class="brand" routerLink="/">Wanderlog</a>
+    <div class="links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+      <a routerLink="/posts" routerLinkActive="active">Stories</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <div class="container">© {{ year }} Wanderlog · Made with Angular</div>
+</footer>
