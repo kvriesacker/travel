@@ -6,6 +6,15 @@
         >Home</a
       >
       <a routerLink="/posts" routerLinkActive="active">Stories</a>
+      <form class="search" role="search" (submit)="search($event, query)">
+        <input
+          #query
+          type="search"
+          placeholder="Search"
+          aria-label="Search stories"
+          enterkeyhint="search"
+        />
+      </form>
     </div>
   </nav>
 </header>
