@@ -1,3 +1,4 @@
+import { CITY_GUIDES } from './city-guides.data';
 import { Post } from './post';
 
 export const POSTS: Post[] = [
@@ -52,4 +53,5 @@ export const POSTS: Post[] = [
       'Evenings meant wandering Pontochō alley and eating far too much yakitori. Get an ICOCA card on day one; buses and trains become effortless.',
     ],
   },
+  ...CITY_GUIDES,
 ];

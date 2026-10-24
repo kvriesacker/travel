@@ -1,6 +1,36 @@
 .cover {
+  position: relative;
   padding: 6rem 0 3rem;
   color: #1f2933;
+
+  > img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  > .container {
+    position: relative;
+  }
+
+  &.has-photo {
+    padding-top: 14rem;
+    color: #fff;
+    text-shadow: 0 1px 12px rgb(0 0 0 / 0.5);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgb(0 0 0 / 0) 30%, rgb(0 0 0 / 0.65));
+    }
+
+    > .container {
+      z-index: 1;
+    }
+  }
 
   h1 {
     margin: 0.5rem 0;
@@ -21,6 +51,20 @@
   padding-block: 2.5rem 4rem;
   font-size: 1.125rem;
   line-height: 1.75;
+}
+
+.credit {
+  margin-top: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.tips {
+  padding-left: 1.25rem;
+
+  li + li {
+    margin-top: 0.5rem;
+  }
 }
 
 .tags {

@@ -13,6 +13,22 @@ describe('PostService', () => {
     expect(dates).toEqual([...dates].sort().reverse());
   });
 
+  it('gives every post a unique slug', () => {
+    const slugs = service.all().map((post) => post.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+  });
+
+  it('credits every photo', () => {
+    for (const { photo } of service.all()) {
+      if (photo) {
+        expect(photo.src).toMatch(/^https:\/\/images\.unsplash\.com\/photo-[\w-]+$/);
+        expect(photo.page).toMatch(/^https:\/\/unsplash\.com\/photos\//);
+        expect(photo.author).not.toBe('');
+        expect(photo.alt).not.toBe('');
+      }
+    }
+  });
+
   it('finds a post by slug', () => {
     expect(service.bySlug('kyoto-autumn')?.country).toBe('Japan');
     expect(service.bySlug('nope')).toBeUndefined();

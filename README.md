@@ -15,7 +15,9 @@ Angular 22 needs Node.js 22.22.3+ or 24.15+.
 
 ## Adding a story
 
-Stories live in `src/app/posts/posts.data.ts`. Add an object with a unique `slug` and it shows up on the home page, the story list and at `/posts/<slug>`. Covers are CSS gradients for now; put photos in `public/images/` and set `cover` to `url(images/your-photo.jpg) center / cover`.
+Stories live in `src/app/posts/posts.data.ts`, and the European city guides in `src/app/posts/city-guides.data.ts`. Add an object with a unique `slug` and it shows up on the home page, the story list and at `/posts/<slug>`. Optional `tips` render as a "Practical tips" list.
+
+For a photo, set `photo` to an image hotlinked from [Unsplash](https://unsplash.com) (free under the [Unsplash License](https://unsplash.com/license)): `src` is the `images.unsplash.com/photo-…` URL without its query string, `page` is the photo's unsplash.com page, plus `author` and `alt`. The post page credits the photographer automatically. The `cover` gradient shows behind the photo while it loads, or on its own if there is no photo.
 
 ## Deployment
 
