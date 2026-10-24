@@ -29,6 +29,26 @@ describe('PostService', () => {
     }
   });
 
+  it('has city guides for every continent', () => {
+    const regions = new Set(
+      service
+        .all()
+        .filter((post) => post.tags.includes('City guide'))
+        .map((post) => post.tags[1]),
+    );
+    for (const region of [
+      'Europe',
+      'Asia',
+      'Middle East',
+      'Africa',
+      'North America',
+      'South America',
+      'Oceania',
+    ]) {
+      expect(regions).toContain(region);
+    }
+  });
+
   it('finds a post by slug', () => {
     expect(service.bySlug('kyoto-autumn')?.country).toBe('Japan');
     expect(service.bySlug('nope')).toBeUndefined();

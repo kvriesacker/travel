@@ -1,5 +1,6 @@
 import { CITY_GUIDES } from './city-guides.data';
 import { Post } from './post';
+import { WORLD_CITY_GUIDES } from './world-city-guides.data';
 
 export const POSTS: Post[] = [
   {
@@ -54,4 +55,5 @@ export const POSTS: Post[] = [
     ],
   },
   ...CITY_GUIDES,
+  ...WORLD_CITY_GUIDES,
 ];
