@@ -53,4 +53,37 @@ describe('PostService', () => {
     expect(service.bySlug('kyoto-autumn')?.country).toBe('Japan');
     expect(service.bySlug('nope')).toBeUndefined();
   });
+
+  describe('search', () => {
+    it('returns everything for an empty query', () => {
+      expect(service.search('  ')).toBe(service.all());
+    });
+
+    it('matches title, city and country', () => {
+      expect(service.search('tram 28').map((post) => post.slug)).toContain('lisbon-tram-28');
+      expect(service.search('portugal').map((post) => post.slug)).toContain('lisbon-tram-28');
+    });
+
+    it('matches body text and tips', () => {
+      expect(service.search('sardines').map((post) => post.slug)).toContain('lisbon-tram-28');
+      expect(service.search('oyster card').map((post) => post.slug)).toContain('london-city-guide');
+    });
+
+    it('ignores case and accents', () => {
+      expect(service.search('REYKJAVIK').map((post) => post.slug)).toContain('iceland-ring-road');
+      expect(service.search('pastéis').length).toBeGreaterThan(0);
+    });
+
+    it('requires every word to match', () => {
+      expect(service.search('lisbon sardines').map((post) => post.slug)).toEqual([
+        'lisbon-tram-28',
+      ]);
+      expect(service.search('lisbon glacier')).toEqual([]);
+    });
+
+    it('searches within a given list', () => {
+      const japan = service.all().filter((post) => post.country === 'Japan');
+      expect(service.search('kyoto', japan).every((post) => post.country === 'Japan')).toBe(true);
+    });
+  });
 });
